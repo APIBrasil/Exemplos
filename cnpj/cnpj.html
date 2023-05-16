@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+    <div class="container">
+		
+		<div class="row">
+
+			<div class="col-12 text-center">
+				<h1 class="mt-2 mb-4">Consulta CNPJ</h1>
+			</div>
+
+			<div class="col-7">
+				<label for="cnae">Buscar por CNAE</label>
+				<select name="cnae" id="cnae" class="form-control" serachable="true">
+					<option> Selecione </option>
+				</select>
+			</div>
+
+			<!-- by cep-->
+			<div class="col-3">
+				<label for="cep">Buscar por CEP</label>
+				<input type="text" name="cep" id="cep" class="form-control">
+			</div>
+
+			<div class="col-2">
+				<label for="quantidade">Quantidade CNPJs</label>
+				<input type="number" name="quantidade" id="quantidade" class="form-control" value="25">
+			</div>
+		</div>
+
+		<hr class="my-4">
+
+		<div class="">
+
+			<button onclick="exportTableToCSV('cnpjs.csv')" class="btn btn-primary mt-2 mb-2">Exportar CSV</button>
+
+			<table class="table">
+				<thead>
+				<tr>
+					<th scope="col">CNPJ</th>
+					<th scope="col">Capital Social</th>
+					<th scope="col">Razao Social</th>
+					<th scope="col">Bairro</th>
+					<th scope="col">Cidade</th>
+					<th scope="col">E-mail</th>
+					<th scope="col">Telefone 1</th>
+					<th scope="col">Telefone 2</th>
+				</tr>
+				</thead>
+			</table>
+
+		</div>
+
+	</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
+
+<script>
+
+    let credenciais = {
+        "Content-Type": "application/json",
+        "SecretKey": "SUAS_CREDENCIAIS_AQUI",
+        "PublicToken": "SUAS_CREDENCIAIS_AQUI",
+        "DeviceToken": "SUAS_CREDENCIAIS_AQUI",
+        "Authorization": "Bearer SUAS_CREDENCIAIS_AQUI"
+    };
+
+    let settings = {
+        "url": "https://cluster.apigratis.com/api/v1/dados/lista-cnaes",
+        "method": "POST",
+        "headers": credenciais,
+        "data": JSON.stringify({
+            "quantidade": "1300"
+        }),
+    };
+
+	function exportTableToCSV(filename) {
+		let csv = [];
+		let rows = document.querySelectorAll("table tr");
+
+		for (var i = 0; i < rows.length; i++) {
+			let row = [], cols = rows[i].querySelectorAll("td, th");
+
+			for (var j = 0; j < cols.length; j++){
+				row.push(cols[j].innerText);
+				csv.push(row.join(","));
+			}
+		}
+		downloadCSV(csv.join("\n"), filename);
+	}
+
+	function downloadCSV(csv, filename) {
+		let csvFile;
+		let downloadLink;
+
+		csvFile = new Blob([csv], {type: "text/csv"});
+		downloadLink = document.createElement("a");
+		downloadLink.download = filename;
+		downloadLink.href = window.URL.createObjectURL(csvFile);
+		downloadLink.style.display = "none";
+		document.body.appendChild(downloadLink);
+		downloadLink.click();
+	}
+
+    $(document).ready(function(){
+
+		$( '#cnae' ).select2( {
+			theme: 'bootstrap-5'
+		});
+        
+        $.ajax(settings).done(function (response) {
+            let cnaes = response?.response?.cnae || [];
+            cnaes.forEach(cnae => {
+                $('#cnae').append(`<option value="${cnae.codigo}">${cnae.codigo} - ${cnae.descricao}</option>`);
+            });
+        });
+
+        $('#cnae').on('change', function(){
+
+			let cnae = $(this).val();
+			let quantidade = $('#quantidade').val();
+
+            settings.url = "https://cluster.apigratis.com/api/v1/dados/cnae";
+
+			settings.data = JSON.stringify({
+                "cnae": cnae,
+				"quantidade": quantidade
+            });
+           
+            $.ajax(settings).done(function (response) {
+                
+                let cnae = response?.response?.cnae || [];
+
+				if(cnae.length > 1){
+					$('table tbody').remove();
+				}
+
+				cnae.forEach(cnae => {
+					$('table').append(`
+						<tbody>
+							<tr>
+								<td>${cnae?.cnpj ?? ''}</td>
+								<td>${cnae?.capital_social ? parseInt(cnae.capital_social).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : ''}</td>
+								<td>${cnae?.razao_social ?? ''}</td>
+								<td>${cnae?.bairro ?? ''}</td>
+								<td>${cnae?.municipio_descricao ?? ''}</td>
+								<td>${cnae?.correio_eletronico ?? ''}</td>
+								<td><a href="https://wa.me/55${cnae?.ddd1}${cnae.telefone1}">${cnae?.ddd1}${cnae.telefone1}</a></td>
+								<td><a href="https://wa.me/55${cnae?.ddd2}${cnae.telefone2}">${cnae?.ddd2}${cnae.telefone2}</a></td>
+							</tr>
+						</tbody>
+					`);
+				});
+
+            });
+
+        });
+
+		$('#cep').on('focusout', function(){
+
+			let cep = $(this).val();
+			let cnae = $('#cnae').val();
+			let quantidade = $('#quantidade').val();
+
+			settings.url = "https://cluster.apigratis.com/api/v1/dados/cep";
+
+			settings.data = JSON.stringify({
+				"cep": cep,
+				"quantidade": quantidade,
+				"cnae": cnae
+			});
+
+			$.ajax(settings).done(function (response) {
+                
+                let cpnjs = response?.response?.cep || [];
+
+				if(cpnjs.length > 1){
+					$('table tbody').remove();
+				}
+
+				cpnjs.forEach(cnae => {
+					$('table').append(`
+						<tbody>
+							<tr>
+								<td>${cnae?.cnpj ?? ''}</td>
+								<td>${cnae?.capital_social ? parseInt(cnae.capital_social).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : ''}</td>
+								<td>${cnae?.razao_social ?? ''}</td>
+								<td>${cnae?.bairro ?? ''}</td>
+								<td>${cnae?.municipio_descricao ?? ''}</td>
+								<td>${cnae?.correio_eletronico ?? ''}</td>
+								<td><a href="https://wa.me/55${cnae?.ddd1}${cnae.telefone1}">${cnae?.ddd1}${cnae.telefone1}</a></td>
+								<td><a href="https://wa.me/55${cnae?.ddd2}${cnae.telefone2}">${cnae?.ddd2}${cnae.telefone2}</a></td>
+							</tr>
+						</tbody>
+					`);
+				});
+
+            });
+		});
+
+    });
+
+</script>
+</body>
+</html>
