@@ -13,10 +13,10 @@ curl_setopt_array($curl, array(
   CURLOPT_FOLLOWLOCATION => true,
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS =>'{
+  CURLOPT_POSTFIELDS => '{
     "number": "5531994359434",
-    "text": "Muito top!"
-}',
+      "text": "Muito top!"
+  }',
   CURLOPT_HTTPHEADER => array(
     'Content-Type: application/json',
     'SecretKey: OBTENHA_O_SEU_SECRET_TOKEN_NO_PAINEL',
