@@ -1,8 +1,13 @@
-# Exemplos
-Exemplos de uso de algumas API's do site APIBRASIL
+# Exemplos de uso 
+A ideia desses exemplos é otimizar o tempo de código dos usuários auxiliando na integração com a plataforma.
 
-# Você pode obter as credenciais em
+# Obter as credenciais
 https://apibrasil.com.br
+
+# Pacote Composer PHP
+```composer require jhowbhz/apigratis-sdk-php```
+
+https://package.apibrasil.com.br
 
 # Exemplo Veículos
 - Exemplo de como utilizar a API Placa DADOS
