@@ -1,0 +1,32 @@
+uses
+  IdHTTP, System.Classes;
+
+procedure SendFile;
+var
+  url, data, response: string;
+  http: TIdHTTP;
+begin
+  url := 'https://cluster.apigratis.com/api/v1/whatsapp/sendFile';
+
+  data := '{"number":"5531994359434","path":"https://filesamples.com/samples/video/mp4/sample_960x540.mp4"}';
+
+  http := TIdHTTP.Create;
+  try
+    http.Request.ContentType := 'application/json';
+    http.Request.CustomHeaders.Add('SecretKey: OBTENHA_O_SEU_SECRET_TOKEN_NO_PAINEL');
+    http.Request.CustomHeaders.Add('PublicToken: OBTENHA_O_SEU_PUBLIC_TOKEN_NO_PAINEL');
+    http.Request.CustomHeaders.Add('DeviceToken: OBTENHA_O_SEU_DEVICE_TOKEN_NO_PAINEL');
+    http.Request.CustomHeaders.Add('Authorization: Bearer OBTENHA_O_SEU_TOKEN');
+
+    response := http.Post(url, TStringStream.Create(data));
+  finally
+    http.Free;
+  end;
+
+  ShowMessage(response);
+end;
+
+procedure YourProcedure;
+begin
+  SendFile;
+end;
