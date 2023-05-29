@@ -12,10 +12,10 @@ const headers = {
 };
 
 fetch(url, {
-  method: 'POST',
-  headers: headers,
-  body: JSON.stringify(data)
-})
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(data)
+  })
   .then(response => response.json())
   .then(responseData => console.log(responseData))
   .catch(error => console.error(error));
