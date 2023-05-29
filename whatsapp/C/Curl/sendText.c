@@ -11,6 +11,7 @@ int main(void)
     curl_global_init(CURL_GLOBAL_DEFAULT);
 
     curl = curl_easy_init();
+    
     if (curl) {
         struct curl_slist *headers = NULL;
         headers = curl_slist_append(headers, "Content-Type: application/json");
