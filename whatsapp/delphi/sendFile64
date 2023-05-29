@@ -1,0 +1,32 @@
+uses
+  IdHTTP, System.Classes;
+
+procedure SendFile64;
+var
+  url, data, response: string;
+  http: TIdHTTP;
+begin
+  url := 'https://cluster-01.apigratis.com/api/v1/whatsapp/sendFile64';
+
+  data := '{"number":"5531994359434","caption":"Isso é um teste APIBRASIL!","path":"data:application/pdf;base64,YOUR_BASE_64"}';
+
+  http := TIdHTTP.Create;
+  try
+    http.Request.ContentType := 'application/json';
+    http.Request.CustomHeaders.Add('SecretKey: SUA_CREDENCIAL');
+    http.Request.CustomHeaders.Add('PublicToken: SUA_CREDENCIAL');
+    http.Request.CustomHeaders.Add('DeviceToken: SUA_CREDENCIAL');
+    http.Request.CustomHeaders.Add('Authorization: Bearer eyJ0eXA............');
+
+    response := http.Post(url, TStringStream.Create(data));
+  finally
+    http.Free;
+  end;
+
+  ShowMessage(response);
+end;
+
+procedure YourProcedure;
+begin
+  SendFile64;
+end;
