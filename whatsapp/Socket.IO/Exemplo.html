@@ -32,8 +32,6 @@ socket.on('connect', () => {
 
 socket.on('events', (events) => {
 
-    console.log('events', events);
-
     //append events innerHTML append
     elementEvent = document.getElementById('events');
     elementEvent.innerHTML += '<code>' + JSON.stringify(events, null, 2) + '</code>';
