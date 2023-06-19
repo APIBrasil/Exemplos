@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo socket</title>
+</head>
+<body>
+    <h1>Exemplo socket</h1>
+    <pre id="events"></pre>
+</body>
+
+</html>
+<script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+
+<script>
+
+//////////////////////////////////////////////////////////////////
+// https://plataforma.apibrasil.com.br/plataforma/              //
+//////////////////////////////////////////////////////////////////
+
+socket = io('https://socket.apibrasil.com.br', {
+    query: {
+        "bearer": '', //obtenha seu bearer em Minhas APIS / Credenciais 
+        "channelName": '' //obtenha seu profileID em Meu Perfil
+    },
+});
+
+socket.on('connect', () => {
+    console.log('Conectado ao socket!');
+});
+
+socket.on('events', (events) => {
+
+    console.log('events', events);
+
+    //append events innerHTML append
+    elementEvent = document.getElementById('events');
+    elementEvent.innerHTML += '<code>' + JSON.stringify(events, null, 2) + '</code>';
+    console.log('events', events);
+});
+
+socket.on('disconnect', function () {
+    console.log('Desconectado do socket!');
+});
+
+</script>
