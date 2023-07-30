@@ -11,6 +11,15 @@ https://apibrasil.com.br
 # Pacote Composer PHP
 ```composer require jhowbhz/apigratis-sdk-php```
 
+# Pacote Npm JS
+```npm i apigratis-sdk-nodejs --save```
+
+# Pacote Pip Python 
+```pip install apigratis-sdk-python```
+
+# Pacote Nuget C# and others
+```dotnet add package ApiBrasil --version 1.2.1```
+
 https://package.apibrasil.com.br
 
 # Exemplo Veículos
