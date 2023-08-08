@@ -1,0 +1,68 @@
+unit Main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IdBaseComponent, IdComponent,
+  IdTCPConnection, IdTCPClient, IdHTTP, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Memo1: TMemo;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  HTTPClient: TIdHTTP;
+  RequestBody: TStringStream;
+  Response: string;
+begin
+  HTTPClient := TIdHTTP.Create(nil);
+  RequestBody := TStringStream.Create(
+    '{
+      "number": "559999999999 (Recipient number with Country Code)",
+      "options": {
+          "delay": 1200,
+          "presence": "composing"
+      },
+      "mediaMessage": {
+          "mediatype": "document",
+          "fileName": "evolution-api.pdf",
+          "caption": "This is an example PDF document file sent by Evolution-API via Base64.",
+          "media": "JVBERi0xLjMKJcTl8uXrp/Og0MTGCjMgMCBvYmoKPDwgL0ZpbHRlciAvRmxhdG....."
+      }
+    }',
+    TEncoding.UTF8
+  );
+
+  try
+    HTTPClient.Request.ContentType := 'application/json';
+    HTTPClient.Request.CustomHeaders.AddValue('apikey', 'edison');
+
+    Response := HTTPClient.Post('https://srv02-beta.ping.dev.br/message/sendMedia/teste36', RequestBody);
+    Memo1.Lines.Text := Response;
+  except
+    on E: Exception do
+      ShowMessage('Erro: ' + E.Message);
+  end;
+
+  RequestBody.Free;
+  HTTPClient.Free;
+end;
+
+end.
