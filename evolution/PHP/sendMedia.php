@@ -3,7 +3,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-	CURLOPT_URL => 'https://cluster-01.apigratis.com/api/v2/evolution/message/sendMedia',
+	CURLOPT_URL => 'https://cluster.apigratis.com/api/v2/evolution/message/sendMedia',
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_ENCODING => '',
 	CURLOPT_MAXREDIRS => 10,
