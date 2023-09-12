@@ -72,14 +72,12 @@
 
     let credenciais = {
         "Content-Type": "application/json",
-        "SecretKey": "SUAS_CREDENCIAIS_AQUI",
-        "PublicToken": "SUAS_CREDENCIAIS_AQUI",
         "DeviceToken": "SUAS_CREDENCIAIS_AQUI",
         "Authorization": "Bearer SUAS_CREDENCIAIS_AQUI"
     };
 
     let settings = {
-        "url": "https://cluster.apigratis.com/api/v1/dados/lista-cnaes",
+        "url": "https://cluster.apigratis.com/api/v2/dados/lista-cnaes",
         "method": "POST",
         "headers": credenciais,
         "data": JSON.stringify({
