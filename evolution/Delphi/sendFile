@@ -52,9 +52,10 @@ begin
 
   try
     HTTPClient.Request.ContentType := 'application/json';
-    HTTPClient.Request.CustomHeaders.AddValue('apikey', 'edison');
+    HTTPClient.Request.CustomHeaders.AddValue('DeviceToken', '1234-1233');
+    HTTPClient.Request.CustomHeaders.AddValue('Authorization', 'Bearer ......');
 
-    Response := HTTPClient.Post('https://srv02-beta.ping.dev.br/message/sendMedia/teste36', RequestBody);
+    Response := HTTPClient.Post('https://cluster.apigratis.com/api/v1/evolution/message/sendText', RequestBody);
     Memo1.Lines.Text := Response;
   except
     on E: Exception do
