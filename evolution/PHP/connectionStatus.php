@@ -3,21 +3,19 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://cluster-01.apigratis.com/api/v1/evolution/instance/connectionState',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_HTTPHEADER => array(
-				'Content-Type: application/json',
-				'SecretKey: 36e55f97715c17bd...',
-				'PublicToken: 04adb4e2f055c978c9bb...',
-				'DeviceToken: ba673f52-7402-4cc4-95bb...',
-				'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.....'
-		),
+	CURLOPT_URL => 'https://cluster-01.apigratis.com/api/v2/evolution/instance/connectionState',
+	CURLOPT_RETURNTRANSFER => true,
+	CURLOPT_ENCODING => '',
+	CURLOPT_MAXREDIRS => 10,
+	CURLOPT_TIMEOUT => 0,
+	CURLOPT_FOLLOWLOCATION => true,
+	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	CURLOPT_CUSTOMREQUEST => 'GET',
+	CURLOPT_HTTPHEADER => array(
+	'Content-Type: application/json',
+	'DeviceToken: ba673f52-7402-4cc4-95bb...',
+	'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.....'
+),
 ));
 
 $response = curl_exec($curl);
