@@ -65,8 +65,6 @@
 
     let credenciais = {
         "Content-Type": "application/json",
-        "SecretKey": "1cd7eaff.....",
-        "PublicToken": "a2743b5.....",
         "DeviceToken": "e6882f1f-cc05.....",
         "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...."
     };
@@ -106,7 +104,7 @@
             let plate = $("#plate").val();
 
             let settings = {
-                "url": "https://cluster.apigratis.com/api/v1/vehicles/dados",
+                "url": "https://cluster.apigratis.com/api/v2/vehicles/dados",
                 "method": "POST",
                 "headers": credenciais,
                 "data": JSON.stringify({
