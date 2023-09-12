@@ -3,7 +3,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-		CURLOPT_URL => 'https://cluster-01.apigratis.com/api/v1/evolution/message/sendText',
+		CURLOPT_URL => 'https://cluster.apigratis.com/api/v2/evolution/message/sendText',
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
@@ -22,11 +22,9 @@ curl_setopt_array($curl, array(
 			}
 		}',
 		CURLOPT_HTTPHEADER => array(
-				'Content-Type: application/json',
-				'SecretKey: 703cdd9e-3ece-4d31-9066.....',
-				'PublicToken: 04adb4e2f055c978c9bb10.....',
-				'DeviceToken: 1c6f531d-c785-4655-bb70.....',
-				'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9......'
+		'Content-Type: application/json',
+		'DeviceToken: 1c6f531d-c785-4655-bb70.....',
+		'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9......'
 		),
 ));
 
