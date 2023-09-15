@@ -131,7 +131,7 @@
 			let cnae = $(this).val();
 			let quantidade = $('#quantidade').val();
 
-            settings.url = "https://cluster.apigratis.com/api/v1/dados/cnae";
+            settings.url = "https://cluster.apigratis.com/api/v2/dados/cnae";
 
 			settings.data = JSON.stringify({
                 "cnae": cnae,
@@ -173,7 +173,7 @@
 			let cnae = $('#cnae').val();
 			let quantidade = $('#quantidade').val();
 
-			settings.url = "https://cluster.apigratis.com/api/v1/dados/cep";
+			settings.url = "https://cluster.apigratis.com/api/v2/dados/cep";
 
 			settings.data = JSON.stringify({
 				"cep": cep,
