@@ -1,6 +1,6 @@
 import requests
 
-url = "https://cluster.apigratis.com/api/v1/whatsapp/sendText"
+url = "https://gateway.apibrasil.io/api/v2/whatsapp/sendText"
 headers = {
     "Content-Type": "application/json",
     "SecretKey": "OBTENHA_O_SEU_SECRET_TOKEN_NO_PAINEL",

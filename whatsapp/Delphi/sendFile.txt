@@ -6,7 +6,7 @@ var
   url, data, response: string;
   http: TIdHTTP;
 begin
-  url := 'https://cluster.apigratis.com/api/v1/whatsapp/sendFile';
+  url := 'https://gateway.apibrasil.io/api/v2/whatsapp/sendFile';
 
   data := '{"number":"5531994359434","path":"https://filesamples.com/samples/video/mp4/sample_960x540.mp4"}';
 

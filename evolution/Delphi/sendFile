@@ -55,7 +55,7 @@ begin
     HTTPClient.Request.CustomHeaders.AddValue('DeviceToken', '1234-1233');
     HTTPClient.Request.CustomHeaders.AddValue('Authorization', 'Bearer ......');
 
-    Response := HTTPClient.Post('https://cluster.apigratis.com/api/v1/evolution/message/sendText', RequestBody);
+    Response := HTTPClient.Post('https://gateway.apibrasil.io/api/v2/evolution/message/sendText', RequestBody);
     Memo1.Lines.Text := Response;
   except
     on E: Exception do

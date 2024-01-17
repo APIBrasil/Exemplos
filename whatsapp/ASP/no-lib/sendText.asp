@@ -3,7 +3,7 @@ Dim url
 Dim jsonBody
 Dim xmlhttp
 
-url = "https://cluster.apigratis.com/api/v1/whatsapp/sendText"
+url = "https://gateway.apibrasil.io/api/v2/whatsapp/sendText"
 jsonBody = "{""number"": ""5531994359434"", ""text"": ""Muito top!""}"
 
 Set xmlhttp = Server.CreateObject("MSXML2.ServerXMLHTTP")

@@ -1,4 +1,4 @@
-const url = 'https://cluster.apigratis.com/api/v1/whatsapp/sendText';
+const url = 'https://gateway.apibrasil.io/api/v2/whatsapp/sendText';
 const data = {
   number: '5531994359434',
   text: 'Muito top!'

@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class Main {
     public static void main(String[] args) {
-        String url = "https://cluster.apigratis.com/api/v1/whatsapp/sendText";
+        String url = "https://gateway.apibrasil.io/api/v2/whatsapp/sendText";
         String secretKey = "OBTENHA_O_SEU_SECRET_TOKEN_NO_PAINEL";
         String publicToken = "OBTENHA_O_SEU_PUBLIC_TOKEN_NO_PAINEL";
         String deviceToken = "OBTENHA_O_SEU_DEVICE_TOKEN_NO_PAINEL";

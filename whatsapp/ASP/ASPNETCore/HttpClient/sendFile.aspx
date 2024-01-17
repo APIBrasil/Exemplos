@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        var url = "https://cluster.apigratis.com/api/v1/whatsapp/sendText";
+        var url = "https://gateway.apibrasil.io/api/v2/whatsapp/sendText";
         
         var data = new
         {

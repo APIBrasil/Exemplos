@@ -1,7 +1,7 @@
 require 'net/http'
 require 'json'
 
-url = URI.parse('https://cluster.apigratis.com/api/v1/whatsapp/sendText')
+url = URI.parse('https://gateway.apibrasil.io/api/v2/whatsapp/sendText')
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
 

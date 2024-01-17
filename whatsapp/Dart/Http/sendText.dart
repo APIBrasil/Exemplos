@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 void main() async {
-  var url = Uri.parse('https://cluster.apigratis.com/api/v1/whatsapp/sendText');
+  var url = Uri.parse('https://gateway.apibrasil.io/api/v2/whatsapp/sendText');
   
   var headers = {
     'Content-Type': 'application/json',

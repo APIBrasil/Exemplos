@@ -1,4 +1,4 @@
-URL url = new URL("https://cluster.apigratis.com/api/v1/whatsapp/sendText");
+URL url = new URL("https://gateway.apibrasil.io/api/v2/whatsapp/sendText");
 httpConnection = (HttpURLConnection)url.openConnection();
 httpConnection.setRequestMethod("POST");
 httpConnection.setDoOutput(true);

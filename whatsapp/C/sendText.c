@@ -5,7 +5,7 @@ int main(void)
 {
     CURL *curl;
     CURLcode res;
-    const char *url = "https://cluster.apigratis.com/api/v1/whatsapp/sendText";
+    const char *url = "https://gateway.apibrasil.io/api/v2/whatsapp/sendText";
     const char *jsonBody = "{\"number\":\"5531994359434\",\"text\":\"Muito top!\"}";
 
     curl = curl_easy_init();

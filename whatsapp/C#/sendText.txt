@@ -7,7 +7,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        string url = "https://cluster.apigratis.com/api/v1/whatsapp/sendText";
+        string url = "https://gateway.apibrasil.io/api/v2/whatsapp/sendText";
         string jsonBody = "{\"number\":\"5531994359434\",\"text\":\"Muito top!\"}";
         
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
