@@ -12,7 +12,7 @@ function requestDefault(String $action = '', Array $data = []) {
         $method = isset($data['method']) ? $data['method'] : "POST";
         
         // seu bearer token que dura 1 ano e é gerado na aba /api/v2/login
-        $bearerToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3BsYXRhZm9ybWEuYXBpYnJhc2lsLmNvbS5ici9hdXRoL2xvZ2luIiwiaWF0IjoxNjc2MzA0NjgxLCJleHAiOjE3MDc4NDA2ODEsIm5iZiI6MTY3NjMwNDY4MSwianRpIjoiNEVBWDBubWFPUDVaazN0UiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.vwT4CM5BTl8_OmnKw8dIxi3qe1WPKcfTL3x6KhcwVaY";
+        $bearerToken = ".....vwT4CM5BTl8_OmnKw8dIxi3qe1WPKcfTL3x6KhcwVaY";
 
         // define as variáveis se existirem no array, senão, define como vazio
         $deviceToken = $data['DeviceToken'] ?? '';
