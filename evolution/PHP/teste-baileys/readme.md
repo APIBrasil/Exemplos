@@ -1,3 +1,5 @@
+# Como consumir API Evolution Baileys utilizando APIBRASIL
+Vamos ver nesses exemplos abaixo, como é fácil consumir as funcionalidades da API Evolution Baileys utilizando a APIBRASIL, você pode copiar e utilizar esse código em seus softwares comerciais. 
 
 # Criar um dispositivo
 Para que você possa utilizar as API's da plataforma, você deve cadastrar previamente o dispositivo na plataforma
