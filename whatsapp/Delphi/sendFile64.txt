@@ -13,8 +13,6 @@ begin
   http := TIdHTTP.Create;
   try
     http.Request.ContentType := 'application/json';
-    http.Request.CustomHeaders.Add('SecretKey: SUA_CREDENCIAL');
-    http.Request.CustomHeaders.Add('PublicToken: SUA_CREDENCIAL');
     http.Request.CustomHeaders.Add('DeviceToken: SUA_CREDENCIAL');
     http.Request.CustomHeaders.Add('Authorization: Bearer eyJ0eXA............');
 
