@@ -21,7 +21,6 @@ function requestDefault(String $action = '', Array $data = []) {
 
         // define os headers com device token bearer e secret key
         // o secret só é usado se for criar um novo dispositivo
-
         $headers = array(
             "Content-Type:application/json",
             "Accept:application/json",
