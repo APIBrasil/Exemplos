@@ -13,8 +13,6 @@ class Program
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
         request.Method = "POST";
         request.ContentType = "application/json";
-        request.Headers.Add("SecretKey", "OBTENHA_O_SEU_SECRET_TOKEN_NO_PAINEL");
-        request.Headers.Add("PublicToken", "OBTENHA_O_SEU_PUBLIC_TOKEN_NO_PAINEL");
         request.Headers.Add("DeviceToken", "OBTENHA_O_SEU_DEVICE_TOKEN_NO_PAINEL");
         request.Headers.Add("Authorization", "Bearer OBTENHA_O_SEU_TOKEN");
         
