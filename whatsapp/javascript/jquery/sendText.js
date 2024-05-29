@@ -5,8 +5,6 @@ const data = {
 };
 const headers = {
   'Content-Type': 'application/json',
-  'SecretKey': 'OBTENHA_O_SEU_SECRET_TOKEN_NO_PAINEL',
-  'PublicToken': 'OBTENHA_O_SEU_PUBLIC_TOKEN_NO_PAINEL',
   'DeviceToken': 'OBTENHA_O_SEU_DEVICE_TOKEN_NO_PAINEL',
   'Authorization': 'Bearer OBTENHA_O_SEU_TOKEN'
 };
