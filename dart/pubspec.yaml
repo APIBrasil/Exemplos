@@ -1,7 +1,7 @@
-name: my_dart_project
+name: dart
 description: A sample command-line application.
 version: 1.0.0
-repository: https://github.com/APIBrasil/apigratis-exemplos
+# repository: https://github.com/my_org/my_repo
 
 environment:
   sdk: ^3.5.0
@@ -9,7 +9,9 @@ environment:
 # Add regular dependencies here.
 dependencies:
   # path: ^1.8.0
+  http: ^1.2.2
+  apigratis_sdk_flutter: ^0.0.8
 
 dev_dependencies:
-  lints: ^4.0.0
-  test: ^1.24.0
+  build_runner: ^2.0.0
+  json_serializable: ^6.0.0
