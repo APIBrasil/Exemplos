@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:apigratis_sdk_flutter/apigratis_sdk_flutter.dart';
+
 // Exemplo de uso
 void main() async {
 
@@ -34,5 +37,5 @@ void main() async {
   } catch (e) {
     print('Erro: $e');
   }
-  
+
 }
