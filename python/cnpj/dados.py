@@ -29,9 +29,10 @@ def cnpj_v2():
 
     cnpj_api.set_cnpj("44.959.669/0001-80")
 
-    dados = cnpj_api.consulta()
+    api_response, status_code = cnpj_api.consulta()
 
-    print(dados)
+    print(status_code)
+    print(api_response)
 
 if __name__ == "__main__":
     cnpj_v1() # Chamando a versão 1 da SDK
