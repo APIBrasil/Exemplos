@@ -15,7 +15,16 @@ https://apibrasil.com.br
 ```npm i apigratis-sdk-nodejs --save```
 
 # Pacote Pip Python 
-```pip install apigratis-sdk-python```
+```pip install apigratis-sdk-python``` 
+
+Nós temos uma novidade para você desenvolvedor Python! 👨‍💻 Nós temos uma nova [SDK](https://pypi.org/project/api-brasil/) cheia de novas funcionalidades, recursos e um pouco mais fácil de usar para facilitar a sua vida.
+No futuro, queremos depreciar essa versão atual "apigratis-sdk-python" e substituir por essa que acaba de sair do forno, acesse o [repo oficial](https://github.com/ivanildobarauna-dev/apibrasil-py) e saiba mais sobre como instalar e usufruir do que desenvolvemos. Caso você já queira usar a nova versão, você já pode com o seguinte comando:
+
+```bash
+pip install api-brasil
+```
+
+Aproveite!
 
 # Pacote Nuget C# and others
 ```dotnet add package ApiBrasil --version 1.2.1```
