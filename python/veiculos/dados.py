@@ -21,7 +21,7 @@ def veiculos_v1():
 
     print(dados)
 
-def veiculos_v2(); 
+def veiculos_v2():
     api_client = APIBrasilClient(bearer_token=BEARER_TOKEN)
     api_veiculos = VehiclesApi(api_brasil_client=api_client, device_token=VEICULOS_DEVICE_TOKEN)
 
@@ -35,3 +35,4 @@ def veiculos_v2();
 
 if __name__ == "__main__":
     veiculos_v1()
+    veiculos_v2()
