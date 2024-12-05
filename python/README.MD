@@ -4,7 +4,7 @@ Esta pasta tem como objetivo deixar alguns exemplos sobre como é simples é fá
 * Lembrete: Não esqueça de obter suas credenciais diretamente na nossa plataforma **https://apibrasil.com.br**
 
 
-# Aviso improtante sobre as nossas SDKs Python
+# Aviso importante sobre as nossas SDKs Python
 
 Atualmente estamos em um processo de migração da nossa antiga SDK para uma nova que acabamos de desenvolver, deixamos aqui o [repositório](https://github.com/ivanildobarauna-dev/apibrasil-py) oficial do desenvolvimento e o [link](https://pypi.org/project/api-brasil/) da nova SDK, portanto nesse documento guiaremos você para uso de ambas as versões.
 
