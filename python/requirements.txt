@@ -1,2 +1,3 @@
 apigratis-sdk-python==1.1.7
 python-dotenv==1.0.0
+api-brasil==2.0.0

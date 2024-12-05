@@ -1,13 +1,18 @@
-from apigratis.Service import Service
+from apigratis.Service import Service # Versão a ser depreciada em breve
+from api_brasil import APIBrasilClient, CNPJApi # Nova SDK
+
 import json
 
-def cnpj():
+BEARER_TOKEN = "token_aqui" ## Obtenha em apibrasil.com.br
+CNPJ_DEVICE_TOKEN = "token_aqui" ## Obtenha em https://plataforma.apibrasil.com.br/myaccount/credentials
+
+def cnpj_v1():
 
     dados = Service().cnpj(json.dumps({
         "action": "cnpj",
         "credentials": {
-            "DeviceToken": "b85a1b33-95e2-413d-875d-c4d6267dd544",
-            "BearerToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2dhdGV3YXkuYXBpYnJhc2lsLmlvL2FwaS92Mi9sb2dpbiIsImlhdCI6MTcyMzQ2NTkyNCwiZXhwIjoxNzU1MDAxOTI0LCJuYmYiOjE3MjM0NjU5MjQsImp0aSI6IldEMlVzTzBkTEM3NlJaanUiLCJzdWIiOiIyIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.UhNU8cVok-MBHsb84YiYgERYXgWnyI4vebbQvmmxSYU",
+            "DeviceToken": CNPJ_DEVICE_TOKEN,
+            "BearerToken": BEARER_TOKEN,
         },
         "body": {
             "cnpj": "44.959.669/0001-80",
@@ -16,5 +21,18 @@ def cnpj():
 
     print(dados)
 
+def cnpj_v2():
+    api_client = APIBrasilClient(
+        bearer_token=BEARER_TOKEN 
+    )
+    cnpj_api = CNPJApi(api_brasil_client=api_client, device_token=CNPJ_DEVICE_TOKEN)
+
+    cnpj_api.set_cnpj("44.959.669/0001-80")
+
+    dados = cnpj_api.consulta()
+
+    print(dados)
+
 if __name__ == "__main__":
-    cnpj()
+    cnpj_v1() # Chamando a versão 1 da SDK
+    cnpj_v2() # Chamando a versão 2 da SDK
