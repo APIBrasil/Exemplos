@@ -1,24 +1,38 @@
 from apigratis.Service import Service
-from dotenv import load_dotenv
-import json, os
+from api_brasil import APIBrasilClient, VehiclesApi
+from api_brasil.features.vehicles import Endpoints
+import json
 
-def whatsapp():
+BEARER_TOKEN = "token_aqui" ## Obtenha em apibrasil.com.br
+VEICULOS_DEVICE_TOKEN = "token_aqui" ## Obtenha em https://plataforma.apibrasil.com.br/myaccount/credentials
 
-    load_dotenv()
-    bearer = os.getenv("BEARER_TOKEN")
 
+def veiculos_v1():
     dados = Service().vehicles(json.dumps({
         "action": "dados",
         "credentials": {
-            "DeviceToken": "2445b404-63c2-48c1-aec7.....",
-            "BearerToken": str(bearer)
+            "DeviceToken": VEICULOS_DEVICE_TOKEN,
+            "BearerToken": BEARER_TOKEN
         },
         "body":  {
-            "placa": "OQH3A65"
+            "placa": "ABC1D34"
         }
     }))
 
     print(dados)
 
+def veiculos_v2():
+    api_client = APIBrasilClient(bearer_token=BEARER_TOKEN)
+    api_veiculos = VehiclesApi(api_brasil_client=api_client, device_token=VEICULOS_DEVICE_TOKEN)
+
+    api_veiculos.set_plate(plate="ABC1D34")
+
+    api_response, status_code = api_veiculos.consulta(vechiles_api_endpoint=Endpoints.dados)
+
+    print(status_code)
+    print(api_response)
+    
+
 if __name__ == "__main__":
-    whatsapp()
+    veiculos_v1()
+    veiculos_v2()

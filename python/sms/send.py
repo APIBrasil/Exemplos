@@ -1,25 +1,39 @@
 from apigratis.Service import Service
-from dotenv import load_dotenv
-import json, os
+from api_brasil import APIBrasilClient, SMSApi
+import json
 
-def whatsapp():
 
-    load_dotenv()
-    bearer = os.getenv("BEARER_TOKEN")
+BEARER_TOKEN = "token_aqui" ## Obtenha em apibrasil.com.br
+SMS_DEVICE_TOKEN = "token_aqui" ## Obtenha em https://plataforma.apibrasil.com.br/myaccount/credentials
 
-    sendFile = Service().sms(json.dumps({
+
+def sms_v1():
+    send_message_response = Service().sms(json.dumps({
         "action": "send",
         "credentials": {
-            "DeviceToken": "24ee6be2-f4f4-4a9a-9af9.....",
-            "BearerToken": str(bearer)
+            "DeviceToken": SMS_DEVICE_TOKEN,
+            "BearerToken": BEARER_TOKEN
         },
         "body":  {
-            "number":"5531994359434",
+            "number":"550000000000",
             "message": "Ola mundo!"
         }
     }))
 
-    print(sendFile)
+    print(send_message_response)
+
+def sms_v2():
+    api_client = APIBrasilClient(bearer_token=BEARER_TOKEN)
+    
+    sms = SMSApi(api_brasil_client=api_client, device_token=SMS_DEVICE_TOKEN)
+
+    sms.set_phone_number("5500000000")
+
+    api_response, status_code = sms.send(message="SMS enviado a partir da APIBrasil")
+
+    print(status_code)
+    print(api_response)
 
 if __name__ == "__main__":
-    whatsapp()
+    sms_v1()
+    sms_v2()

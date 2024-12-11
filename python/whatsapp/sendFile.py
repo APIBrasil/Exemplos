@@ -1,30 +1,42 @@
 from apigratis.Service import Service
-from dotenv import load_dotenv
-import json, os
+from api_brasil import APIBrasilClient, WhatsAppApi
+import json
 
-def whatsapp():
-    
-    load_dotenv()
-    bearer = os.getenv("BEARER_TOKEN")
+BEARER_TOKEN = "token_aqui" ## Obtenha em apibrasil.com.br
+WHATSAPP_DEVICE_TOKEN = "token_aqui" ## Obtenha em https://plataforma.apibrasil.com.br/myaccount/credentials
 
-    sendFile = Service().whatsapp(json.dumps({
+
+def whatsapp_v1():
+    sendFile_response = Service().whatsapp(json.dumps({
         "action": "sendFile",
         "credentials": {
-            "DeviceToken": "f937d7f6-7b36-4872-b666.....",
-            "BearerToken": str(bearer)
+            "DeviceToken": WHATSAPP_DEVICE_TOKEN,
+            "BearerToken": BEARER_TOKEN
         },
         "body":  {
-            "path" : "https://assets.nagios.com/downloads/nagiosxi/docs/Installing_The_XI_Linux_Agent.pdf",
-            "number" : "5531994359434",
+            "path" : "https://apibrasil.io/img/capa.png",
+            "number" : "5531900000000",
             "options" : {
-                "caption": "texto do caption para arquivo",
+                "caption": "Bem vindo a APIBrasil",
                 "createChat": True,
                 "filename": "arquivo X"
             }
         }
     }))
 
-    print(sendFile)
+    print(sendFile_response)
+
+def whatsapp_v2():
+    api_client = APIBrasilClient(bearer_token=BEARER_TOKEN)
+    whatsapp_api = WhatsAppApi(api_brasil_client=api_client,
+                               device_token=WHATSAPP_DEVICE_TOKEN)
+    
+    api_response, status_code = whatsapp_api.send_file(file_path="https://apibrasil.io/img/capa.png",
+                                                       file_description="Bem vindo a APIBrasil")
+
+    print(status_code)
+    print(api_response)
 
 if __name__ == "__main__":
-    whatsapp()
+    whatsapp_v1()
+    whatsapp_v2
