@@ -3,7 +3,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://cluster.apigratis.com/api/v2/whatsapp/sendText',
+  CURLOPT_URL => 'https://gateway.apibrasil.io/api/v2/whatsapp/sendText',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_SSL_VERIFYHOST=> false,
