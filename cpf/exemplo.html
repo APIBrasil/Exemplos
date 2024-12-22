@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Consulta CPF</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Consulta CPF</h1>
+
+        <div class="mb-3">
+            <label for="cpf" class="form-label">Digite o CPF</label>
+            <input type="text" id="cpf" class="form-control" placeholder="Ex.: 01234567890">
+        </div>
+        <button id="consultar" class="btn btn-primary mb-4">Consultar</button>
+
+        <h3>Resultado da Consulta</h3>
+        <div id="resultado" class="mt-3">
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('consultar').addEventListener('click', function () {
+            const cpf = document.getElementById('cpf').value;
+
+            const settings = {
+                url: 'https://gateway.apibrasil.io/api/v2/dados/cpf',
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "DeviceToken": "4a77c519-8d2f-4ab5......",
+                    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...."
+                },
+                body: JSON.stringify({ cpf: cpf })
+            };
+
+            fetch(settings.url, settings)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.error) {
+                        const content = data.response.content;
+                        const nome = content.nome.conteudo.nome || "Não informado";
+                        const documento = content.nome.conteudo.documento || "Não informado";
+                        const dataNascimento = content.nome.conteudo.data_nascimento || "Não informado";
+                        const telefone = content.pesquisa_telefones.conteudo.length > 0 ? content.pesquisa_telefones.conteudo[0].numero : "Não informado";
+                        const endereco = content.pesquisa_enderecos.conteudo.length > 0 ? content.pesquisa_enderecos.conteudo[0] : null;
+
+                        let enderecoHTML = "Não informado";
+                        if (endereco) {
+                            enderecoHTML = `${endereco.logradouro}, ${endereco.numero} - ${endereco.bairro}, ${endereco.cidade} - ${endereco.estado}`;
+                        }
+
+                        document.getElementById('resultado').innerHTML = `
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Nome</th>
+                                    <td>${nome}</td>
+                                </tr>
+                                <tr>
+                                    <th>Documento</th>
+                                    <td>${documento}</td>
+                                </tr>
+                                <tr>
+                                    <th>Data de Nascimento</th>
+                                    <td>${dataNascimento}</td>
+                                </tr>
+                                <tr>
+                                    <th>Telefone</th>
+                                    <td>${telefone}</td>
+                                </tr>
+                                <tr>
+                                    <th>Endereço</th>
+                                    <td>${enderecoHTML}</td>
+                                </tr>
+                            </table>
+                        `;
+                    } else {
+                        document.getElementById('resultado').innerHTML = `<p class="text-danger">Erro: ${data.message}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro ao consultar CPF:", error);
+                    document.getElementById('resultado').innerHTML = `<p class="text-danger">Erro ao consultar CPF</p>`;
+                });
+        });
+    </script>
+</body>
+</html>
