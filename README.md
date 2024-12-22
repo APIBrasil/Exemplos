@@ -33,8 +33,27 @@ https://package.apibrasil.com.br
 
 # Exemplo Veículos
 - Exemplo de como utilizar a API Placa DADOS
+- 
+Acessar exemplo:
+
+https://github.com/APIBrasil/apigratis-exemplos/tree/main/veiculos
+
 <img src="https://i.imgur.com/BEITa4B.png" alt="Placa Dados"/>
+
+# Exemplo de CPF
+- Essa consulta exige cadastro prévio para utilização
+
+Acessar exemplo:
+
+https://github.com/APIBrasil/apigratis-exemplos/tree/main/cpf
+
+<img src="https://github.com/user-attachments/assets/bcaad5a1-e15b-4f79-a070-ed0ba1be7861" />
 
 # Exemplo de CNPJ
 - Exemplo de como utilizar a API CNPJ
+
+Acessar exemplo:
+
+https://github.com/APIBrasil/apigratis-exemplos/tree/main/cnpj
+
 <img src="https://i.imgur.com/YCZRJsh.png" alt="CNPJ"/>
